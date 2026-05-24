@@ -40,7 +40,7 @@
     "@types/node": "^22.0.0"
   },
   "publishConfig": { "access": "public" },
-  "repository": { "type": "git", "url": "https://github.com/skwid138/opencode-tui.git" },
+  "repository": { "type": "git", "url": "git+https://github.com/skwid138/opencode-tui.git" },
   "homepage": "https://github.com/skwid138/opencode-tui",
   "bugs": { "url": "https://github.com/skwid138/opencode-tui/issues" },
   "license": "MIT",
