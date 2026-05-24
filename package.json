@@ -5,7 +5,7 @@
   "type": "module",
   "files": ["dist", "LICENSE", "README.md"],
   "exports": {
-    ".": { "types": "./dist/config.d.ts" },
+    ".": { "import": "./dist/config.js", "types": "./dist/config.d.ts" },
     "./tui": { "import": "./dist/tui.js", "types": "./dist/tui.d.ts" }
   },
   "engines": { "node": ">=22" },
