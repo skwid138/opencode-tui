@@ -2,7 +2,7 @@
 
 Lipstick for your OpenCode TUI.
 
-`@skwid138/opencode-tui` is a configurable OpenCode TUI plugin that replaces the home screen logo and prompt placeholders with friendlier defaults. Use it as-is, customize the colors and ASCII rows, swap prompt suggestions, or disable either section independently.
+`@skwid138/opencode-tui` is a configurable OpenCode TUI plugin that replaces the home screen logo and prompt placeholders with friendlier defaults. Use it as-is, customize the ASCII rows and inline colors, swap prompt suggestions, or disable either section independently.
 
 ## Install
 
@@ -30,24 +30,11 @@ Use the default JustVibes logo and default prompt placeholders:
 }
 ```
 
-### Custom logo colors
+### Logo builder
 
-Colors must be 3- or 6-digit hex strings including `#`.
+Use the logo builder to generate custom `logo.rows` config: <https://skwid138.github.io/opencode-logo-builder/>.
 
-```jsonc
-{
-  "plugins": [
-    [
-      "@skwid138/opencode-tui/tui",
-      {
-        "logo": {
-          "colors": ["#0ff", "#ff66aa"]
-        }
-      }
-    ]
-  ]
-}
-```
+Plugin options are registered as a tuple: `["@skwid138/opencode-tui/tui", { config }]`.
 
 ### Disable sections
 
@@ -110,7 +97,7 @@ Disable both sections:
 
 ### Custom logo rows
 
-Each row contains text segments. `color` must be `0` or `1`, indexing into the configured color tuple.
+Each row contains literal pre-rendered ASCII text segments. Segment `color` is an inline 3- or 6-digit hex string including `#`.
 
 ```jsonc
 {
@@ -119,12 +106,11 @@ Each row contains text segments. `color` must be `0` or `1`, indexing into the c
       "@skwid138/opencode-tui/tui",
       {
         "logo": {
-          "colors": ["#5DBDB3", "#F8B4C4"],
           "rows": [
             {
               "segments": [
-                { "text": "Open", "color": 0 },
-                { "text": "Code", "color": 1 }
+                { "text": "Open", "color": "#5DBDB3" },
+                { "text": "Code", "color": "#F8B4C4" }
               ]
             }
           ]
@@ -140,8 +126,7 @@ Each row contains text segments. `color` must be `0` or `1`, indexing into the c
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
 | `logo` | `false \| LogoConfig` | default logo | Set to `false` to leave `home_logo` untouched. |
-| `logo.colors` | `[string, string]` | `["#5DBDB3", "#F8B4C4"]` | Teal/pink color tuple. Values must match `#RGB` or `#RRGGBB`. Empty arrays fall back to defaults. |
-| `logo.rows` | `Array<{ segments: Array<{ text: string; color: 0 \| 1 }> }>` | JustVibes ASCII art | Logo rows rendered as horizontal text segments. Empty arrays fall back to defaults. |
+| `logo.rows` | `Array<{ segments: Array<{ text: string; color: string }> }>` | JustVibes ASCII art | Logo rows rendered as horizontal text segments. Segment colors must match `#RGB` or `#RRGGBB`. Empty arrays fall back to defaults. |
 | `prompt` | `false \| PromptConfig` | default prompt | Set to `false` to leave `home_prompt` untouched. |
 | `prompt.placeholders.normal` | `string[]` | 11 default ideas | Suggestions for normal prompt mode. Empty arrays fall back to defaults. |
 | `prompt.placeholders.shell` | `string[]` | 3 default shell ideas | Suggestions for shell prompt mode. Empty arrays fall back to defaults. |
