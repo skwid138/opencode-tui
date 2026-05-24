@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest"
-import { DEFAULT_COLORS, DEFAULT_LOGO_ROWS, DEFAULT_PLACEHOLDERS } from "./defaults"
+import { DEFAULT_LOGO_ROWS, DEFAULT_PLACEHOLDERS } from "./defaults"
 
 const hexColorRe = /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/
 
@@ -14,8 +14,11 @@ describe("defaults", () => {
     }
   })
 
-  it("provides valid default hex colors", () => {
-    expect(DEFAULT_COLORS.every((color) => hexColorRe.test(color))).toBe(true)
+  it("provides inline valid default hex colors on every logo segment", () => {
+    expect(DEFAULT_LOGO_ROWS.flatMap((row) => row.segments.map((segment) => segment.color))).toEqual(
+      Array.from({ length: DEFAULT_LOGO_ROWS.length }).flatMap(() => ["#5DBDB3", "#F8B4C4"]),
+    )
+    expect(DEFAULT_LOGO_ROWS.every((row) => row.segments.every((segment) => hexColorRe.test(segment.color)))).toBe(true)
   })
 
   it("provides 11 normal prompt placeholders", () => {

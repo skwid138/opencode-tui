@@ -18,25 +18,39 @@ describe("validateConfig", () => {
     expect(validateConfig({ prompt: false })).toEqual({ logo: undefined, prompt: false, warnings: [] })
   })
 
-  it("accepts valid logo colors", () => {
-    expect(validateConfig({ logo: { colors: ["#FFF", "#000"] } })).toEqual({
-      logo: { colors: ["#FFF", "#000"] },
+  it("accepts valid inline logo segment hex colors", () => {
+    expect(validateConfig({ logo: { rows: [{ segments: [{ text: "A", color: "#ABC" }] }] } })).toEqual({
+      logo: { rows: [{ segments: [{ text: "A", color: "#ABC" }] }] },
+      prompt: undefined,
+      warnings: [],
+    })
+
+    expect(validateConfig({ logo: { rows: [{ segments: [{ text: "B", color: "#AABBCC" }] }] } })).toEqual({
+      logo: { rows: [{ segments: [{ text: "B", color: "#AABBCC" }] }] },
       prompt: undefined,
       warnings: [],
     })
   })
 
-  it("falls back to defaults and warns for invalid logo colors", () => {
-    const result = validateConfig({ logo: { colors: ["invalid", "#000"] } })
+  it.each(["red", "#GG0000", "123456", "#12345"])(
+    "falls back to defaults and warns for invalid inline logo segment color %s",
+    (color) => {
+      const result = validateConfig({ logo: { rows: [{ segments: [{ text: "A", color }] }] } })
+
+      expect(result.logo).toBeUndefined()
+      expect(result.prompt).toBeUndefined()
+      expect(result.warnings).toHaveLength(1)
+      expect(result.warnings[0]).toContain("Invalid logo rows")
+    },
+  )
+
+  it("rejects removed logo colors array", () => {
+    const result = validateConfig({ logo: { colors: ["#FFF", "#000"] } })
 
     expect(result.logo).toBeUndefined()
     expect(result.prompt).toBeUndefined()
     expect(result.warnings).toHaveLength(1)
-    expect(result.warnings[0]).toContain("Invalid logo colors")
-  })
-
-  it("treats empty logo colors as defaults", () => {
-    expect(validateConfig({ logo: { colors: [] } })).toEqual({ logo: undefined, prompt: undefined, warnings: [] })
+    expect(result.warnings[0]).toContain("Invalid logo config")
   })
 
   it("treats empty logo rows as defaults", () => {
@@ -53,7 +67,7 @@ describe("validateConfig", () => {
 
   it("isolates invalid logo from valid prompt", () => {
     const result = validateConfig({
-      logo: { colors: ["nope", "#000"] },
+      logo: { rows: [{ segments: [{ text: "ok", color: "red" }] }] },
       prompt: { placeholders: { normal: ["Build"], shell: ["List"] } },
     })
 
@@ -64,11 +78,11 @@ describe("validateConfig", () => {
 
   it("isolates invalid prompt from valid logo", () => {
     const result = validateConfig({
-      logo: { colors: ["#fff", "#000"] },
+      logo: { rows: [{ segments: [{ text: "ok", color: "#fff" }] }] },
       prompt: { placeholders: { normal: [123] } },
     })
 
-    expect(result.logo).toEqual({ colors: ["#fff", "#000"] })
+    expect(result.logo).toEqual({ rows: [{ segments: [{ text: "ok", color: "#fff" }] }] })
     expect(result.prompt).toBeUndefined()
     expect(result.warnings).toHaveLength(1)
   })
@@ -89,8 +103,8 @@ describe("validateConfig", () => {
     const hostileInputs = [
       { logo: null, prompt: null },
       { logo: [], prompt: [] },
-      { logo: { colors: ["#fff"] }, prompt: { placeholders: [] } },
-      { logo: { rows: [{ segments: [{ text: 1, color: 0 }] }] } },
+      { logo: { colors: ["#fff", "#000"] }, prompt: { placeholders: [] } },
+      { logo: { rows: [{ segments: [{ text: 1, color: "#fff" }] }] } },
       { logo: { rows: [{ segments: [{ text: "ok", color: 2 }] }] } },
       { prompt: { placeholders: { normal: "bad", shell: ["ok"] } } },
       { prompt: { placeholders: { normal: ["ok"], shell: [null] } } },

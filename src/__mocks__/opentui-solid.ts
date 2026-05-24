@@ -1,6 +1,11 @@
 export const createComponent = (comp: any, props: any) => comp(props)
 export const createElement = (tagName: any) => ({ tagName, props: {}, children: [] })
-export const insert = (_parent: any, accessor: any) => accessor
+export const insert = (parent: any, accessor: any) => {
+  const value = typeof accessor === "function" ? accessor() : accessor
+  if (Array.isArray(value)) parent.children.push(...value)
+  else parent.children.push(value)
+  return value
+}
 export const setProp = (element: any, name: any, value: any) => {
   element.props[name] = value
 }
