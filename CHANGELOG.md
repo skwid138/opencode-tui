@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/skwid138/opencode-tui/compare/v1.0.0...v1.1.0) (2026-05-24)
+
+
+### Features
+
+* add releaseRules for refactor and breaking change commits ([d87f8f7](https://github.com/skwid138/opencode-tui/commit/d87f8f78e9584dc8f6c2c3a561815829d943d193))
+
 # 1.0.0 (2026-05-24)
 
 
