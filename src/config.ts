@@ -4,8 +4,7 @@ export interface OpencodeTuiOptions {
 }
 
 export interface LogoConfig {
-  colors?: [string, string]
-  rows?: Array<{ segments: Array<{ text: string; color: 0 | 1 }> }>
+  rows?: Array<{ segments: Array<{ text: string; color: string }> }>
 }
 
 export interface PromptConfig {
@@ -24,18 +23,6 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value)
 }
 
-function validateColors(value: unknown): [string, string] | undefined | false {
-  if (!Array.isArray(value)) return false
-  if (value.length === 0) return undefined
-  if (value.length !== 2) return false
-
-  const [first, second] = value
-  if (typeof first !== "string" || typeof second !== "string") return false
-  if (!HEX_COLOR_RE.test(first) || !HEX_COLOR_RE.test(second)) return false
-
-  return [first, second]
-}
-
 function validateRows(value: unknown): LogoConfig["rows"] | undefined | false {
   if (!Array.isArray(value)) return false
   if (value.length === 0) return undefined
@@ -45,11 +32,11 @@ function validateRows(value: unknown): LogoConfig["rows"] | undefined | false {
   for (const row of value) {
     if (!isRecord(row) || !Array.isArray(row.segments) || row.segments.length === 0) return false
 
-    const segments: Array<{ text: string; color: 0 | 1 }> = []
+    const segments: Array<{ text: string; color: string }> = []
     for (const segment of row.segments) {
       if (!isRecord(segment)) return false
       if (typeof segment.text !== "string") return false
-      if (segment.color !== 0 && segment.color !== 1) return false
+      if (typeof segment.color !== "string" || !HEX_COLOR_RE.test(segment.color)) return false
 
       segments.push({ text: segment.text, color: segment.color })
     }
@@ -72,12 +59,8 @@ function validateLogoSection(value: unknown, warnings: string[]): LogoConfig | f
   const logo: LogoConfig = {}
 
   if ("colors" in value) {
-    const colors = validateColors(value.colors)
-    if (colors === false) {
-      warnings.push("Invalid logo colors; using default logo")
-      return undefined
-    }
-    if (colors !== undefined) logo.colors = colors
+    warnings.push("Invalid logo config; logo.colors is not supported")
+    return undefined
   }
 
   if ("rows" in value) {

@@ -1,10 +1,9 @@
 /** @jsxImportSource @opentui/solid */
 import type { LogoConfig } from "./config"
-import { DEFAULT_COLORS, DEFAULT_LOGO_ROWS } from "./defaults"
+import { DEFAULT_LOGO_ROWS } from "./defaults"
 
 export function createLogoComponent(config: LogoConfig | undefined) {
   const rows = config?.rows ?? DEFAULT_LOGO_ROWS
-  const colors = config?.colors ?? DEFAULT_COLORS
 
   return function LogoComponent() {
     return (
@@ -12,7 +11,7 @@ export function createLogoComponent(config: LogoConfig | undefined) {
         {rows.map((row) => (
           <box flexDirection="row">
             {row.segments.map((segment) => (
-              <text fg={colors[segment.color]}>{segment.text}</text>
+              <text fg={segment.color}>{segment.text}</text>
             ))}
           </box>
         ))}

@@ -1,20 +1,17 @@
 import type { LogoConfig, PromptConfig } from "./config"
 
-// Each row has two segments: color 0 = teal, color 1 = pink
 export const DEFAULT_LOGO_ROWS = [
-  { segments: [{ text: "                             ", color: 0 }, { text: "█    █                            ", color: 1 }] },
-  { segments: [{ text: "  ███                  █     ", color: 0 }, { text: "█░  ░█        █                   ", color: 1 }] },
-  { segments: [{ text: "    █                  █     ", color: 0 }, { text: "▓▒  ▒▓        █                   ", color: 1 }] },
-  { segments: [{ text: "    █  █   █  ▒███▒  █████   ", color: 0 }, { text: "▒█  █▒ ███    █▓██    ███   ▒███▒ ", color: 1 }] },
-  { segments: [{ text: "    █  █   █  █▒ ░█    █     ", color: 0 }, { text: " █  █    █    █▓ ▓█  ▓▓ ▒█  █▒ ░█ ", color: 1 }] },
-  { segments: [{ text: "    █  █   █  █▒░      █     ", color: 0 }, { text: " █░░█    █    █   █  █   █  █▒░   ", color: 1 }] },
-  { segments: [{ text: "    █  █   █  ░███▒    █     ", color: 0 }, { text: " ▓▒▒▓    █    █   █  █████  ░███▒ ", color: 1 }] },
-  { segments: [{ text: "    █  █   █     ▒█    █     ", color: 0 }, { text: " ▒██▒    █    █   █  █         ▒█ ", color: 1 }] },
-  { segments: [{ text: "█░ ▒█  █▒ ▓█  █░ ▒█    █░    ", color: 0 }, { text: "  ██     █    █▓ ▓█  ▓▓  █  █░ ▒█ ", color: 1 }] },
-  { segments: [{ text: "▒███░  ▒██▒█  ▒███▒    ▒██   ", color: 0 }, { text: "  ██   █████  █▓██    ███▒  ▒███▒ ", color: 1 }] },
+  { segments: [{ text: "                             ", color: "#5DBDB3" }, { text: "█    █                            ", color: "#F8B4C4" }] },
+  { segments: [{ text: "  ███                  █     ", color: "#5DBDB3" }, { text: "█░  ░█        █                   ", color: "#F8B4C4" }] },
+  { segments: [{ text: "    █                  █     ", color: "#5DBDB3" }, { text: "▓▒  ▒▓        █                   ", color: "#F8B4C4" }] },
+  { segments: [{ text: "    █  █   █  ▒███▒  █████   ", color: "#5DBDB3" }, { text: "▒█  █▒ ███    █▓██    ███   ▒███▒ ", color: "#F8B4C4" }] },
+  { segments: [{ text: "    █  █   █  █▒ ░█    █     ", color: "#5DBDB3" }, { text: " █  █    █    █▓ ▓█  ▓▓ ▒█  █▒ ░█ ", color: "#F8B4C4" }] },
+  { segments: [{ text: "    █  █   █  █▒░      █     ", color: "#5DBDB3" }, { text: " █░░█    █    █   █  █   █  █▒░   ", color: "#F8B4C4" }] },
+  { segments: [{ text: "    █  █   █  ░███▒    █     ", color: "#5DBDB3" }, { text: " ▓▒▒▓    █    █   █  █████  ░███▒ ", color: "#F8B4C4" }] },
+  { segments: [{ text: "    █  █   █     ▒█    █     ", color: "#5DBDB3" }, { text: " ▒██▒    █    █   █  █         ▒█ ", color: "#F8B4C4" }] },
+  { segments: [{ text: "█░ ▒█  █▒ ▓█  █░ ▒█    █░    ", color: "#5DBDB3" }, { text: "  ██     █    █▓ ▓█  ▓▓  █  █░ ▒█ ", color: "#F8B4C4" }] },
+  { segments: [{ text: "▒███░  ▒██▒█  ▒███▒    ▒██   ", color: "#5DBDB3" }, { text: "  ██   █████  █▓██    ███▒  ▒███▒ ", color: "#F8B4C4" }] },
 ] as const satisfies NonNullable<LogoConfig["rows"]>
-
-export const DEFAULT_COLORS = ["#5DBDB3", "#F8B4C4"] as const satisfies readonly [string, string]
 
 export const DEFAULT_PLACEHOLDERS = {
   normal: [
