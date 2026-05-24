@@ -1,14 +1,26 @@
 {
   "name": "@skwid138/opencode-tui",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Configurable TUI plugin for OpenCode — custom logo and prompt placeholders",
   "type": "module",
-  "files": ["dist", "LICENSE", "README.md"],
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
   "exports": {
-    ".": { "import": "./dist/config.js", "types": "./dist/config.d.ts" },
-    "./tui": { "import": "./dist/tui.js", "types": "./dist/tui.d.ts" }
+    ".": {
+      "import": "./dist/config.js",
+      "types": "./dist/config.d.ts"
+    },
+    "./tui": {
+      "import": "./dist/tui.js",
+      "types": "./dist/tui.d.ts"
+    }
   },
-  "engines": { "node": ">=22" },
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "build": "vite build",
     "test": "vitest run",
@@ -39,10 +51,24 @@
     "@semantic-release/git": "^10.0.0",
     "@types/node": "^22.0.0"
   },
-  "publishConfig": { "access": "public" },
-  "repository": { "type": "git", "url": "git+https://github.com/skwid138/opencode-tui.git" },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skwid138/opencode-tui.git"
+  },
   "homepage": "https://github.com/skwid138/opencode-tui",
-  "bugs": { "url": "https://github.com/skwid138/opencode-tui/issues" },
+  "bugs": {
+    "url": "https://github.com/skwid138/opencode-tui/issues"
+  },
   "license": "MIT",
-  "keywords": ["opencode", "tui", "plugin", "logo", "prompt", "terminal"]
+  "keywords": [
+    "opencode",
+    "tui",
+    "plugin",
+    "logo",
+    "prompt",
+    "terminal"
+  ]
 }
