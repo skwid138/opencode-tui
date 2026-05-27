@@ -43,7 +43,7 @@
     "vite": "^6.0.0",
     "vite-plugin-solid": "^2.0.0",
     "vite-plugin-dts": "^4.0.0",
-    "typescript": "^5.0.0",
+    "typescript": "^6.0.3",
     "vitest": "^3.0.0",
     "@vitest/coverage-v8": "^3.0.0",
     "semantic-release": "^25.0.0",
