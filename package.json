@@ -65,8 +65,11 @@
   "license": "MIT",
   "keywords": [
     "opencode",
+    "opencode-plugin",
     "tui",
     "plugin",
+    "ascii-art",
+    "figlet",
     "logo",
     "prompt",
     "terminal"
