@@ -14,7 +14,7 @@ Add the TUI entry to your OpenCode plugin configuration using the package's TUI 
 
 ```jsonc
 {
-  "plugins": ["@skwid138/opencode-tui/tui"]
+  "plugin": ["@skwid138/opencode-tui/tui"]
 }
 ```
 
@@ -26,7 +26,7 @@ Use the default JustVibes logo and default prompt placeholders:
 
 ```jsonc
 {
-  "plugins": ["@skwid138/opencode-tui/tui"]
+  "plugin": ["@skwid138/opencode-tui/tui"]
 }
 ```
 
@@ -42,7 +42,7 @@ Disable only the logo:
 
 ```jsonc
 {
-  "plugins": [
+  "plugin": [
     ["@skwid138/opencode-tui/tui", { "logo": false }]
   ]
 }
@@ -52,7 +52,7 @@ Disable only the prompt override:
 
 ```jsonc
 {
-  "plugins": [
+  "plugin": [
     ["@skwid138/opencode-tui/tui", { "prompt": false }]
   ]
 }
@@ -62,7 +62,7 @@ Disable both sections:
 
 ```jsonc
 {
-  "plugins": [
+  "plugin": [
     ["@skwid138/opencode-tui/tui", { "logo": false, "prompt": false }]
   ]
 }
@@ -72,7 +72,7 @@ Disable both sections:
 
 ```jsonc
 {
-  "plugins": [
+  "plugin": [
     [
       "@skwid138/opencode-tui/tui",
       {
@@ -101,7 +101,7 @@ Each row contains literal pre-rendered ASCII text segments. Segment `color` is a
 
 ```jsonc
 {
-  "plugins": [
+  "plugin": [
     [
       "@skwid138/opencode-tui/tui",
       {
