@@ -47,8 +47,8 @@
     "vite-plugin-solid": "^2.0.0",
     "vite-plugin-dts": "^5.0.1",
     "typescript": "^6.0.3",
-    "vitest": "^4.1.7",
-    "@vitest/coverage-v8": "^4.1.7",
+    "vitest": "^4.1.12",
+    "@vitest/coverage-v8": "^4.1.12",
     "husky": "^9.1.7",
     "semantic-release": "^25.0.0",
     "@types/node": "^22.0.0"
